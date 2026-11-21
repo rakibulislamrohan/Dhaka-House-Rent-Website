@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhaka House Rent Predictor</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">⌂</span> RentWise <small>DHaka</small></a>
+    <nav><a href="#dashboard">Dashboard</a><a href="#predict">Predict Rent</a><a href="#about">About Model</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">MACHINE LEARNING · LINEAR REGRESSION</p>
+        <h1>Find an estimated<br><span>house rent in Dhaka.</span></h1>
+        <p class="hero-copy">A simple house-rent prediction tool using the number of bedrooms and your trained Linear Regression model.</p>
+        <a class="primary-link" href="#predict">Try rent prediction <span>→</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun"></div><div class="building b1"><i></i><i></i><i></i><i></i></div>
+        <div class="building b2"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="building b3"><i></i><i></i><i></i><i></i></div>
+        <div class="ground"></div><div class="floating-card">৳ <b>Rent estimate</b><strong>Instant result</strong></div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section">
+      <div class="section-heading"><div><p class="eyebrow">MODEL OVERVIEW</p><h2>Performance dashboard</h2></div><span class="model-tag">Simple Linear Regression</span></div>
+      <div class="metrics">
+        <article class="metric"><span>MAE</span><strong>৳7,858.98</strong><small>Mean Absolute Error</small></article>
+        <article class="metric"><span>RMSE</span><strong>৳18,442.70</strong><small>Root Mean Squared Error</small></article>
+        <article class="metric"><span>R² SCORE</span><strong>0.1895</strong><small>Explained variance</small></article>
+        <article class="metric"><span>MSE</span><strong>340.13M</strong><small>Mean Squared Error</small></article>
+      </div>
+      <div class="notice"><b>Model note:</b> R² = 0.1895 indicates that this one-feature model explains only a limited share of rent variation. Treat predictions as rough estimates, not confirmed market prices.</div>
+    </section>
+
+    <section id="predict" class="section predictor-section">
+      <div class="section-heading"><div><p class="eyebrow">TRY THE MODEL</p><h2>Live rent prediction</h2><p class="muted">Enter the number of bedrooms to estimate monthly rent.</p></div></div>
+      <div class="predictor-grid">
+        <div class="predict-card">
+          <label for="bedrooms">Number of bedrooms</label>
+          <div class="stepper"><button id="minus" type="button" aria-label="Decrease bedrooms">−</button><input id="bedrooms" type="number" min="1" max="6" value="3"><button id="plus" type="button" aria-label="Increase bedrooms">+</button></div>
+          <p class="hint">Allowed range: 1–6 bedrooms (based on the dataset).</p>
+          <button class="predict-button" id="predictBtn">Calculate estimated rent <span>→</span></button>
+        </div>
+        <div class="result-card" aria-live="polite">
+          <span class="result-label">ESTIMATED MONTHLY RENT</span>
+          <div id="rentResult" class="rent-result">৳28,579</div>
+          <span class="result-sub">Bangladeshi Taka (BDT)</span>
+          <div class="result-rule"></div>
+          <p id="formulaText">For 3 bedrooms · based on your trained model</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section chart-section">
+      <div class="section-heading"><div><p class="eyebrow">MODEL FORMULA</p><h2>Prediction by bedroom count</h2><p class="muted">Values are calculated from the slope and intercept in your notebook.</p></div></div>
+      <div class="chart-card"><canvas id="rentChart"></canvas></div>
+    </section>
+
+    <section id="about" class="section about-section">
+      <p class="eyebrow">HOW IT WORKS</p><h2>Your trained model</h2>
+      <div class="formula">Predicted Rent = (15,403.2912 × Bedrooms) − 17,630.3883</div>
+      <div class="about-grid">
+        <div><b>Input feature</b><p>Bed — number of bedrooms</p></div>
+        <div><b>Target</b><p>Price — house rent in BDT</p></div>
+        <div><b>Algorithm</b><p>Linear Regression</p></div>
+        <div><b>Dataset</b><p>Dhaka house rent dataset · 28,800 rows reported in notebook</p></div>
+      </div>
+      <p class="footnote">This frontend uses the slope and intercept printed in your uploaded Colab notebook. The notebook's final regression cell uses only Bed as its feature. Location, Area and Bath are not currently used by this model.</p>
+    </section>
+  </main>
+  <footer>RentWise Dhaka · Machine Learning Project · Educational estimate only</footer>
+  <script src="script.js"></script>
+</body>
+</html>
